@@ -241,6 +241,21 @@ const buildCallsGraph = (graph: KnowledgeGraph): AdjacencyList => {
   return adj;
 };
 
+/**
+ * Collect file paths that are listed in a Delphi .dpk package's `contains` clause.
+ * These units are package-exported roots and deserve a scoring boost.
+ */
+const buildDpkRootFiles = (graph: KnowledgeGraph): ReadonlySet<string> => {
+  const roots = new Set<string>();
+  for (const rel of graph.iterRelationshipsByType('IMPORTS')) {
+    if (!rel.sourceId.endsWith('.dpk')) continue;
+    // sourceId / targetId are "File:<absolute-path>"
+    const targetPath = rel.targetId.startsWith('File:') ? rel.targetId.slice(5) : null;
+    if (targetPath) roots.add(targetPath);
+  }
+  return roots;
+};
+
 const buildReverseCallsGraph = (graph: KnowledgeGraph): AdjacencyList => {
   const adj = new Map<string, string[]>();
 
@@ -272,6 +287,7 @@ const findEntryPoints = (
   callsEdges: AdjacencyList,
 ): string[] => {
   const symbolTypes = new Set<NodeLabel>(['Function', 'Method']);
+  const dpkRootFiles = buildDpkRootFiles(graph);
   const entryPointCandidates: {
     id: string;
     score: number;
@@ -307,6 +323,11 @@ const findEntryPoints = (
     if (astFrameworkMultiplier > 1.0) {
       score *= astFrameworkMultiplier;
       reasons.push(`framework-ast:${node.properties.astFrameworkReason || 'decorator'}`);
+    }
+
+    if (dpkRootFiles.size > 0 && dpkRootFiles.has(filePath)) {
+      score *= 1.5;
+      reasons.push('dpk-package-root');
     }
 
     if (score > 0) {
