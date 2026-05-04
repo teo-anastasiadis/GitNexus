@@ -153,6 +153,15 @@ const SOURCES: Record<string, GrammarSource> = {
       'Likely cause: native compile failed at install (missing python3/make/g++). ' +
       `See ${ISSUES_URL}/1125.`,
   },
+  [SupportedLanguages.DelphiPascal]: {
+    load: () => _require('tree-sitter-pascal'),
+    optional: true,
+    unavailableNote:
+      'Pascal parsing disabled: vendored `tree-sitter-pascal` (under ' +
+      '`gitnexus/vendor/tree-sitter-pascal`) failed to load. ' +
+      'Likely cause: native compile failed at install (missing python3/make/g++). ' +
+      'Run `node scripts/build-tree-sitter-pascal.cjs` inside `gitnexus/` to retry.',
+  },
   [SupportedLanguages.Kotlin]: {
     load: () => _require('tree-sitter-kotlin'),
     optional: true,

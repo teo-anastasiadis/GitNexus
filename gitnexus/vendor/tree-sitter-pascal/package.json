@@ -1,0 +1,17 @@
+{
+  "name": "tree-sitter-pascal",
+  "version": "0.0.1",
+  "description": "Pascal (Delphi/FreePascal) grammar for tree-sitter",
+  "main": "bindings/node",
+  "types": "bindings/node",
+  "_vendoredBy": "gitnexus - grammar from xuanhoa88/Isopod tree-sitter-pascal@0.0.1. Original nan binding replaced with N-API (node-addon-api) binding. Build deps (node-addon-api, node-gyp-build) are hoisted into gitnexus/package.json optionalDependencies. Native compilation performed by gitnexus/scripts/build-tree-sitter-pascal.cjs at postinstall.",
+  "license": "MIT",
+  "peerDependencies": {
+    "tree-sitter": "^0.21.0"
+  },
+  "peerDependenciesMeta": {
+    "tree-sitter": {
+      "optional": true
+    }
+  }
+}
