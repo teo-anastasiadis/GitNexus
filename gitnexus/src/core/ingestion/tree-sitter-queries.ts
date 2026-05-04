@@ -1500,4 +1500,6 @@ export const LANGUAGE_QUERIES: Record<SupportedLanguages, string> = {
   [SupportedLanguages.Dart]: DART_QUERIES,
   [SupportedLanguages.Vue]: TYPESCRIPT_QUERIES, // Vue <script> blocks are parsed as TypeScript
   [SupportedLanguages.Cobol]: '', // Standalone regex processor — no tree-sitter queries
+  [SupportedLanguages.DelphiPascal]: '', // TODO Step 3: add PASCAL_QUERIES
+  [SupportedLanguages.DFM]: '', // Standalone DFM processor — no tree-sitter queries
 };
