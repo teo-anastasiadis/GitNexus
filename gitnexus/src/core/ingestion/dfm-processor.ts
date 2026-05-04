@@ -205,10 +205,16 @@ export function processDfm(graph: KnowledgeGraph, files: DfmFile[]): DfmProcessR
     }
 
     // OnXxx = HandlerName → CALLS edges from form Module to companion .pas methods.
-    // Uses generateId('Method', ...) to match the ID the method extractor will assign.
+    // Target ID format mirrors parsing-processor.ts line 578:
+    //   generateId(label, `${filePath}:${ClassName}.${methodName}${arityTag}`)
+    // We know ClassName from the DFM root object type. Arity is unknown until Step 7
+    // wires the Pascal method extractor; a second-pass resolver will patch the tags then.
     for (const obj of objects) {
       for (const evt of obj.events) {
-        const targetId = generateId('Method', `${companionPath}:${evt.handlerName}`);
+        const targetId = generateId(
+          'Method',
+          `${companionPath}:${rootObj.className}.${evt.handlerName}`,
+        );
         graph.addRelationship({
           id: generateId('CALLS', `${rootNodeId}->${evt.handlerName}:L${evt.line}`),
           type: 'CALLS',
