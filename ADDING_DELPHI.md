@@ -1,6 +1,6 @@
 # Adding Delphi Pascal Support to GitNexus
 
-**Status:** Planning  
+**Status:** Step 0 complete — ready for Step 1  
 **Scope:** Full language support at parity with existing tree-sitter languages (Dart, Swift)
 
 ---
@@ -114,31 +114,40 @@ treatment: the `program` block's initialization `begin...end` is an unconditiona
 
 ## Step-by-Step Implementation Plan
 
-### Step 0 — Probe the grammar (1–2 hours)
+### Step 0 — Probe the grammar ✅ COMPLETE
 
-Install the grammar and dump a real `.pas` file before writing any queries:
+Probe files in `probe/` (`.pas`, `.dfm`, `.dpk`, `.dpr`). AST dumps in `probe/ast-*.txt`.
 
-```bash
-cd gitnexus
-npm install tree-sitter-pascal --no-save
-node -e "
-const P = require('tree-sitter');
-const Pascal = require('tree-sitter-pascal');
-const p = new P(); p.setLanguage(Pascal);
-const src = require('fs').readFileSync('path/to/real/Unit.pas', 'utf8');
-console.log(p.parse(src).rootNode.toString());
-"
-```
+**`nan@2.14.0` verdict — must vendor.**
+`tree-sitter-pascal@0.0.1` uses `nan@2.14.0` which calls the removed `v8::ArrayBuffer::GetContents()`
+API. Fails to compile on any Node ≥ 13 (including Node 18 and 22). Resolution: vendor under
+`gitnexus/vendor/tree-sitter-pascal/` with a fresh N-API binding (like Dart/Swift). For the probe,
+the grammar was compiled via `tree-sitter build` (CLI WASM path); the `*.so` is in
+`gitnexus/node_modules/tree-sitter-pascal/pascal.so` (not committed).
 
-Verify `declClass`, `defProc`, `declUses`, `exprCall`, `exprDot` match what the grammar emits.
+**Actual node shapes — differences from initial assumptions:**
 
-Key ambiguities to resolve:
-- How `defProc` encodes qualified names (`TFoo.Bar` implementation section)
-- How heritage appears inside `declClass` (`typeref` children? inline identifier?)
-- Whether `declUses` has one child per unit or a flat list
-- `nan@2.14.0` compatibility on Node 18/20/22 — if `npm rebuild tree-sitter-pascal` fails on
-  any platform, vendor the grammar under `gitnexus/vendor/tree-sitter-pascal/` (same pattern as
-  `vendor/tree-sitter-dart/` and `vendor/tree-sitter-swift/`).
+| Question | Assumed | Actual |
+|---|---|---|
+| `defProc` qualified name | `(procName (ident))` | `header: (declProc name: (genericDot lhs: (identifier) rhs: (identifier)))` |
+| Top-level function | `(defProc (procName . (ident)))` | `header: (declProc name: (identifier))` (no `genericDot`) |
+| `declClass` heritage | separate `typeref` / `interfaces` nodes | repeated `parent:` field — first = base class, rest = interfaces |
+| `declUses` child | bare `(ident)` | `(moduleName (identifier)(kDot)(identifier))` for dotted names |
+| Import query | `(declUses (ident) @import.source)` | `(declUses (moduleName) @import)` — grab last `identifier` child for unit name |
+| No-paren proc call | only `exprCall` | ALSO `(statement (exprDot ...))` and `(statement (identifier))` — Delphi allows `Foo.Free` without `()` |
+| `{$IFDEF}` in AST | unknown | `(pp ...)` nodes — present as siblings, no children, can't distinguish directive type from node alone |
+| Visibility section | `kPrivate` etc. directly on fields | `(declSection (kStrict?)(kPrivate/kPublic/...) children...)` wrapper node |
+
+**New call-extraction insight:**
+Delphi allows procedure calls without parentheses. Three call patterns to capture:
+1. `(exprCall entity: (identifier) @name)` — `ShowMessage('x')`
+2. `(exprCall entity: (exprDot rhs: (identifier) @name))` — `FList.Add(x)`
+3. `(statement (exprDot rhs: (identifier) @name))` — `FList.Free` (no parens)
+4. `(statement (identifier) @name)` — `VerifyInvariant` (standalone bare call)
+
+**`pp` nodes:** Always opaque — no children in named tree. Cannot distinguish `{$IFDEF X}` from
+`{$ENDIF}` by type alone. Code inside a conditional block appears as normal siblings, so the call
+extractor sees those calls unconditionally. Acceptable for a first implementation.
 
 Also probe a simple `.dfm` file to confirm the regex state-machine approach is sufficient.
 
@@ -183,55 +192,88 @@ Run `tsc --noEmit` — compiler errors list every dispatch table to update.
 
 **`gitnexus/src/core/ingestion/tree-sitter-queries.ts`**
 
-Add `PASCAL_QUERIES` constant (refine node names against Step 0 dump):
+Add `PASCAL_QUERIES` constant. Node names confirmed by `probe/ast-*.txt` dumps.
 
 ```
-; ── Classes ───────────────────────────────────────────────────────────────────
-(declClass name: (ident) @name) @definition.class
+; ── Classes (declType wraps name + declClass body) ────────────────────────────
+(declType
+  name: (identifier) @name
+  type: (declClass)) @definition.class
 
 ; ── Interfaces ────────────────────────────────────────────────────────────────
-(declIntf name: (ident) @name) @definition.class
+(declType
+  name: (identifier) @name
+  type: (declIntf)) @definition.class
 
-; ── Top-level procedure/function implementations ──────────────────────────────
-; (defProc where procName has exactly one ident → not a method)
-(defProc (procName . (ident) @name)) @definition.function
+; ── Class method implementations (TFoo.Bar) ───────────────────────────────────
+; name field is a genericDot; capture only the rhs (method name)
+(defProc
+  header: (declProc
+    name: (genericDot
+      rhs: (identifier) @name))) @definition.method
 
-; ── Class method implementations (TClass.Method) ──────────────────────────────
-(defProc (procName (ident) @name)) @definition.method
+; ── Top-level function/procedure implementations ──────────────────────────────
+; name field is a plain identifier (no dot)
+(defProc
+  header: (declProc
+    name: (identifier) @name)) @definition.function
 
-; ── Method forward declarations inside class type bodies ──────────────────────
-(declProc (procName (ident) @name)) @definition.method
+; ── Forward declarations inside class bodies ──────────────────────────────────
+(declProc
+  name: (identifier) @name) @definition.method
 
 ; ── Field declarations ────────────────────────────────────────────────────────
-(declField (ident) @name) @definition.property
+(declField
+  name: (identifier) @name) @definition.property
+
+; ── Property declarations ─────────────────────────────────────────────────────
+(declProp
+  name: (identifier) @name) @definition.property
 
 ; ── Type aliases ──────────────────────────────────────────────────────────────
-(declType (ident) @name) @definition.type
+(declType
+  name: (identifier) @name) @definition.type
 
 ; ── Constants ─────────────────────────────────────────────────────────────────
-(declConst (ident) @name) @definition.variable
+(declConst
+  name: (identifier) @name) @definition.variable
 
 ; ── Variables ─────────────────────────────────────────────────────────────────
-(declVar (ident) @name) @definition.variable
+(declVar
+  name: (identifier) @name) @definition.variable
 
-; ── Imports (uses clause — one capture per unit name) ─────────────────────────
-(declUses (ident) @import.source) @import
+; ── Imports — capture the whole moduleName node ───────────────────────────────
+; Unit name is the last identifier child of moduleName (e.g. "SysUtils" from "System.SysUtils")
+(declUses
+  (moduleName) @import) @import
 
-; ── Calls: direct / constructor ───────────────────────────────────────────────
-(exprCall (ident) @call.name) @call
+; ── Calls: direct with args — ShowMessage('x') ───────────────────────────────
+(exprCall
+  entity: (identifier) @call.name) @call
 
-; ── Calls: method (obj.Method()) ──────────────────────────────────────────────
-(exprCall (exprDot (ident) @call.name)) @call
+; ── Calls: method with args — FList.Add(x) ───────────────────────────────────
+(exprCall
+  entity: (exprDot
+    rhs: (identifier) @call.name)) @call
 
-; ── Heritage: extends ─────────────────────────────────────────────────────────
-(declClass
-  name: (ident) @heritage.class
-  (typeref (ident) @heritage.extends)) @heritage
+; ── Calls: no-paren method — FList.Free ──────────────────────────────────────
+; Delphi allows procedure calls without (); appears as statement → exprDot
+(statement
+  (exprDot
+    rhs: (identifier) @call.name)) @call
 
-; ── Heritage: implements ──────────────────────────────────────────────────────
-(declClass
-  name: (ident) @heritage.class
-  (interfaces (typeref (ident) @heritage.implements))) @heritage.impl
+; ── Calls: no-paren bare procedure — VerifyInvariant ─────────────────────────
+(statement
+  (identifier) @call.name) @call
+
+; ── Heritage: all parents (first = base class, rest = interfaces) ─────────────
+; Both "extends" and "implements" use the same parent: field in declClass.
+; Capture the enclosing declType name and each parent typeref.
+(declType
+  name: (identifier) @heritage.class
+  type: (declClass
+    parent: (typeref
+      (identifier) @heritage.parent))) @heritage
 ```
 
 Add to `LANGUAGE_QUERIES` record:
