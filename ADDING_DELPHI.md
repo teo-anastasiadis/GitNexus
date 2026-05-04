@@ -1,6 +1,6 @@
 # Adding Delphi Pascal Support to GitNexus
 
-**Status:** Step 6 complete — ready for Step 7  
+**Status:** Step 7 complete — ready for Step 8  
 **Scope:** Full language support at parity with existing tree-sitter languages (Dart, Swift)
 
 ---

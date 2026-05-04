@@ -132,6 +132,8 @@ export const CLASS_CONTAINER_TYPES = new Set([
   // Kotlin
   'object_declaration',
   'companion_object',
+  // Pascal/Delphi: type declaration wrapping declClass/declIntf
+  'declType',
 ]);
 
 export const CONTAINER_TYPE_TO_LABEL: Record<string, string> = {
@@ -314,6 +316,21 @@ export const findEnclosingClassInfo = (
         }
       }
     }
+    // Pascal: defProc in implementation section — class method with qualified name
+    // e.g. procedure TFoo.DoSomething(...) where lhs of genericDot is the class name
+    if (current.type === 'defProc') {
+      const header = current.childForFieldName?.('header');
+      const nameNode = header?.childForFieldName?.('name');
+      if (nameNode?.type === 'genericDot') {
+        const lhs = nameNode.childForFieldName?.('lhs');
+        if (lhs?.text) {
+          return {
+            classId: generateId('Class', `${filePath}:${lhs.text}`),
+            className: lhs.text,
+          };
+        }
+      }
+    }
     if (CLASS_CONTAINER_TYPES.has(current.type)) {
       // Delegate language-specific container remapping to the provider hook.
       if (resolveEnclosingOwner) {
@@ -365,6 +382,19 @@ export const findEnclosingClassInfo = (
           return {
             classId: generateId('Impl', `${filePath}:${firstType.text}`),
             className: firstType.text,
+          };
+        }
+      }
+
+      // Pascal: declType wraps name + declClass/declIntf — extract label from type child
+      if (current.type === 'declType') {
+        const pascalNameNode = current.childForFieldName?.('name');
+        if (pascalNameNode) {
+          const typeBody = current.childForFieldName?.('type');
+          const pascalLabel = typeBody?.type === 'declIntf' ? 'Interface' : 'Class';
+          return {
+            classId: generateId(pascalLabel, `${filePath}:${pascalNameNode.text}`),
+            className: pascalNameNode.text,
           };
         }
       }
