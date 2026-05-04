@@ -1,0 +1,36 @@
+package MyComponents;
+
+{$R *.res}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$LONGSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION 'My Customer Components'}
+{$LIBSUFFIX '270'}
+{$RUNONLY}
+{$IMPLICITBUILD ON}
+
+requires
+  // dependencies — verify how the idents in requires are encoded
+  rtl,
+  vcl;
+
+contains
+  // contains clause — each entry is "UnitName in 'path'" (with optional {FormIdent})
+  // These three match our probe .pas files — tests the implicitImportWirer path
+  TCustomerForm in 'TCustomerForm.pas' {CustomerForm},
+  TBaseService in 'TBaseService.pas',
+  StringUtils in 'StringUtils.pas';
+
+end.

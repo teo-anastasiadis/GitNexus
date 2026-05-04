@@ -1,0 +1,867 @@
+(root [0, 0] - [256, 0]
+  (unit [0, 0] - [255, 4]
+    (kUnit [0, 0] - [0, 4])
+    (moduleName [0, 5] - [0, 18]
+      (identifier [0, 5] - [0, 18]))
+    (comment [2, 0] - [2, 83])
+    (comment [3, 0] - [3, 81])
+    (comment [4, 0] - [4, 2])
+    (comment [5, 0] - [5, 50])
+    (comment [6, 0] - [6, 80])
+    (comment [7, 0] - [7, 70])
+    (comment [8, 0] - [8, 78])
+    (comment [9, 0] - [9, 88])
+    (pp [11, 0] - [11, 12])
+    (pp [12, 2] - [12, 16])
+    (pp [13, 0] - [13, 8])
+    (interface [15, 0] - [84, 30]
+      (kInterface [15, 0] - [15, 9])
+      (declUses [17, 0] - [25, 23]
+        (kUses [17, 0] - [17, 4])
+        (comment [18, 2] - [18, 70])
+        (moduleName [19, 2] - [19, 17]
+          (identifier [19, 2] - [19, 8])
+          (kDot [19, 8] - [19, 9])
+          (identifier [19, 9] - [19, 17]))
+        (moduleName [20, 2] - [20, 16]
+          (identifier [20, 2] - [20, 8])
+          (kDot [20, 8] - [20, 9])
+          (identifier [20, 9] - [20, 16]))
+        (moduleName [21, 2] - [21, 11]
+          (identifier [21, 2] - [21, 5])
+          (kDot [21, 5] - [21, 6])
+          (identifier [21, 6] - [21, 11]))
+        (moduleName [22, 2] - [22, 14]
+          (identifier [22, 2] - [22, 5])
+          (kDot [22, 5] - [22, 6])
+          (identifier [22, 6] - [22, 14]))
+        (moduleName [23, 2] - [23, 14]
+          (identifier [23, 2] - [23, 5])
+          (kDot [23, 5] - [23, 6])
+          (identifier [23, 6] - [23, 14]))
+        (moduleName [24, 2] - [24, 11]
+          (identifier [24, 2] - [24, 5])
+          (kDot [24, 5] - [24, 6])
+          (identifier [24, 6] - [24, 11]))
+        (moduleName [25, 2] - [25, 22]
+          (identifier [25, 2] - [25, 10])
+          (kDot [25, 10] - [25, 11])
+          (identifier [25, 11] - [25, 22])))
+      (declTypes [27, 0] - [80, 6]
+        (kType [27, 0] - [27, 4])
+        (comment [28, 2] - [28, 93])
+        (declType [29, 2] - [29, 20]
+          name: (identifier [29, 2] - [29, 11])
+          (kEq [29, 12] - [29, 13])
+          type: (declClass [29, 14] - [29, 19]
+            (kClass [29, 14] - [29, 19])))
+        (comment [31, 2] - [31, 26])
+        (declType [32, 2] - [35, 6]
+          name: (identifier [32, 2] - [32, 19])
+          (kEq [32, 20] - [32, 21])
+          type: (declIntf [32, 22] - [35, 5]
+            (kInterface [32, 22] - [32, 31])
+            guid: (guid [33, 4] - [33, 46]
+              (literalString [33, 5] - [33, 45]))
+            (declProc [34, 4] - [34, 60]
+              (kProcedure [34, 4] - [34, 13])
+              name: (identifier [34, 14] - [34, 31])
+              args: (declArgs [34, 31] - [34, 59]
+                (declArg [34, 32] - [34, 58]
+                  (kConst [34, 32] - [34, 37])
+                  name: (identifier [34, 38] - [34, 47])
+                  type: (type [34, 49] - [34, 58]
+                    (typeref [34, 49] - [34, 58]
+                      (identifier [34, 49] - [34, 58]))))))
+            (kEnd [35, 2] - [35, 5])))
+        (comment [37, 2] - [37, 202])
+        (comment [38, 2] - [38, 58])
+        (declType [39, 2] - [80, 6]
+          name: (identifier [39, 2] - [39, 15])
+          (kEq [39, 16] - [39, 17])
+          type: (declClass [39, 18] - [80, 5]
+            (kClass [39, 18] - [39, 23])
+            parent: (typeref [39, 24] - [39, 29]
+              (identifier [39, 24] - [39, 29]))
+            parent: (typeref [39, 31] - [39, 48]
+              (identifier [39, 31] - [39, 48]))
+            (declSection [40, 2] - [46, 27]
+              (kStrict [40, 2] - [40, 8])
+              (kPrivate [40, 9] - [40, 16])
+              (comment [41, 4] - [41, 69])
+              (declField [42, 4] - [42, 39]
+                name: (identifier [42, 4] - [42, 14])
+                type: (type [42, 16] - [42, 38]
+                  (typeref [42, 16] - [42, 38]
+                    (typerefTpl [42, 16] - [42, 38]
+                      entity: (identifier [42, 16] - [42, 27])
+                      (kLt [42, 27] - [42, 28])
+                      args: (typerefArgs [42, 28] - [42, 37]
+                        (identifier [42, 28] - [42, 37]))
+                      (kGt [42, 37] - [42, 38])))))
+              (declField [43, 4] - [43, 27]
+                name: (identifier [43, 4] - [43, 17])
+                type: (type [43, 19] - [43, 26]
+                  (typeref [43, 19] - [43, 26]
+                    (identifier [43, 19] - [43, 26]))))
+              (comment [44, 4] - [44, 85])
+              (pp [45, 4] - [45, 18])
+              (declField [46, 4] - [46, 27]
+                name: (identifier [46, 4] - [46, 13])
+                type: (type [46, 15] - [46, 26]
+                  (typeref [46, 15] - [46, 26]
+                    (identifier [46, 15] - [46, 26])))))
+            (pp [47, 4] - [47, 12])
+            (declSection [48, 2] - [56, 23]
+              (kPrivate [48, 2] - [48, 9])
+              (declProc [49, 4] - [49, 28]
+                (kProcedure [49, 4] - [49, 13])
+                name: (identifier [49, 14] - [49, 27]))
+              (declProc [50, 4] - [50, 24]
+                (kProcedure [50, 4] - [50, 13])
+                name: (identifier [50, 14] - [50, 23]))
+              (comment [51, 4] - [51, 78])
+              (comment [52, 4] - [52, 77])
+              (comment [53, 4] - [53, 59])
+              (pp [54, 4] - [54, 20])
+              (declProc [55, 4] - [55, 43]
+                (kProcedure [55, 4] - [55, 13])
+                name: (identifier [55, 14] - [55, 22])
+                args: (declArgs [55, 22] - [55, 42]
+                  (declArg [55, 23] - [55, 41]
+                    (kConst [55, 23] - [55, 28])
+                    name: (identifier [55, 29] - [55, 33])
+                    type: (type [55, 35] - [55, 41]
+                      (declString [55, 35] - [55, 41]
+                        (kString [55, 35] - [55, 41]))))))
+              (declProc [56, 4] - [56, 23]
+                (kProcedure [56, 4] - [56, 13])
+                name: (identifier [56, 14] - [56, 22])))
+            (pp [57, 4] - [57, 12])
+            (declSection [58, 2] - [59, 31]
+              (kProtected [58, 2] - [58, 11])
+              (declProc [59, 4] - [59, 31]
+                (kProcedure [59, 4] - [59, 13])
+                name: (identifier [59, 14] - [59, 20])
+                attribute: (procAttribute [59, 22] - [59, 30]
+                  (kOverride [59, 22] - [59, 30]))))
+            (declSection [60, 2] - [64, 60]
+              (kPublic [60, 2] - [60, 8])
+              (declProc [61, 4] - [61, 53]
+                (kConstructor [61, 4] - [61, 15])
+                name: (identifier [61, 16] - [61, 22])
+                args: (declArgs [61, 22] - [61, 42]
+                  (declArg [61, 23] - [61, 41]
+                    name: (identifier [61, 23] - [61, 29])
+                    type: (type [61, 31] - [61, 41]
+                      (typeref [61, 31] - [61, 41]
+                        (identifier [61, 31] - [61, 41])))))
+                attribute: (procAttribute [61, 44] - [61, 52]
+                  (kOverride [61, 44] - [61, 52])))
+              (declProc [62, 4] - [62, 33]
+                (kDestructor [62, 4] - [62, 14])
+                name: (identifier [62, 15] - [62, 22])
+                attribute: (procAttribute [62, 24] - [62, 32]
+                  (kOverride [62, 24] - [62, 32])))
+              (comment [63, 4] - [63, 46])
+              (declProc [64, 4] - [64, 60]
+                (kProcedure [64, 4] - [64, 13])
+                name: (identifier [64, 14] - [64, 31])
+                args: (declArgs [64, 31] - [64, 59]
+                  (declArg [64, 32] - [64, 58]
+                    (kConst [64, 32] - [64, 37])
+                    name: (identifier [64, 38] - [64, 47])
+                    type: (type [64, 49] - [64, 58]
+                      (typeref [64, 49] - [64, 58]
+                        (identifier [64, 49] - [64, 58])))))))
+            (declSection [65, 2] - [79, 45]
+              (kPublished [65, 2] - [65, 11])
+              (comment [66, 4] - [66, 45])
+              (declField [67, 4] - [67, 21]
+                name: (identifier [67, 4] - [67, 11])
+                type: (type [67, 13] - [67, 20]
+                  (typeref [67, 13] - [67, 20]
+                    (identifier [67, 13] - [67, 20]))))
+              (declField [68, 4] - [68, 21]
+                name: (identifier [68, 4] - [68, 11])
+                type: (type [68, 13] - [68, 20]
+                  (typeref [68, 13] - [68, 20]
+                    (identifier [68, 13] - [68, 20]))))
+              (declField [69, 4] - [69, 30]
+                name: (identifier [69, 4] - [69, 16])
+                type: (type [69, 18] - [69, 29]
+                  (typeref [69, 18] - [69, 29]
+                    (identifier [69, 18] - [69, 29]))))
+              (declField [70, 4] - [70, 25]
+                name: (identifier [70, 4] - [70, 13])
+                type: (type [70, 15] - [70, 24]
+                  (typeref [70, 15] - [70, 24]
+                    (identifier [70, 15] - [70, 24]))))
+              (declField [71, 4] - [71, 19]
+                name: (identifier [71, 4] - [71, 11])
+                type: (type [71, 13] - [71, 18]
+                  (typeref [71, 13] - [71, 18]
+                    (identifier [71, 13] - [71, 18]))))
+              (declField [72, 4] - [72, 22]
+                name: (identifier [72, 4] - [72, 13])
+                type: (type [72, 15] - [72, 21]
+                  (typeref [72, 15] - [72, 21]
+                    (identifier [72, 15] - [72, 21]))))
+              (declField [73, 4] - [73, 21]
+                name: (identifier [73, 4] - [73, 12])
+                type: (type [73, 14] - [73, 20]
+                  (typeref [73, 14] - [73, 20]
+                    (identifier [73, 14] - [73, 20]))))
+              (comment [74, 4] - [74, 51])
+              (declProc [75, 4] - [75, 44]
+                (kProcedure [75, 4] - [75, 13])
+                name: (identifier [75, 14] - [75, 26])
+                args: (declArgs [75, 26] - [75, 43]
+                  (declArg [75, 27] - [75, 42]
+                    name: (identifier [75, 27] - [75, 33])
+                    type: (type [75, 35] - [75, 42]
+                      (typeref [75, 35] - [75, 42]
+                        (identifier [75, 35] - [75, 42]))))))
+              (declProc [76, 4] - [76, 44]
+                (kProcedure [76, 4] - [76, 13])
+                name: (identifier [76, 14] - [76, 26])
+                args: (declArgs [76, 26] - [76, 43]
+                  (declArg [76, 27] - [76, 42]
+                    name: (identifier [76, 27] - [76, 33])
+                    type: (type [76, 35] - [76, 42]
+                      (typeref [76, 35] - [76, 42]
+                        (identifier [76, 35] - [76, 42]))))))
+              (declProc [77, 4] - [77, 42]
+                (kProcedure [77, 4] - [77, 13])
+                name: (identifier [77, 14] - [77, 24])
+                args: (declArgs [77, 24] - [77, 41]
+                  (declArg [77, 25] - [77, 40]
+                    name: (identifier [77, 25] - [77, 31])
+                    type: (type [77, 33] - [77, 40]
+                      (typeref [77, 33] - [77, 40]
+                        (identifier [77, 33] - [77, 40]))))))
+              (declProc [78, 4] - [78, 47]
+                (kProcedure [78, 4] - [78, 13])
+                name: (identifier [78, 14] - [78, 29])
+                args: (declArgs [78, 29] - [78, 46]
+                  (declArg [78, 30] - [78, 45]
+                    name: (identifier [78, 30] - [78, 36])
+                    type: (type [78, 38] - [78, 45]
+                      (typeref [78, 38] - [78, 45]
+                        (identifier [78, 38] - [78, 45]))))))
+              (declProc [79, 4] - [79, 45]
+                (kProcedure [79, 4] - [79, 13])
+                name: (identifier [79, 14] - [79, 27])
+                args: (declArgs [79, 27] - [79, 44]
+                  (declArg [79, 28] - [79, 43]
+                    name: (identifier [79, 28] - [79, 34])
+                    type: (type [79, 36] - [79, 43]
+                      (typeref [79, 36] - [79, 43]
+                        (identifier [79, 36] - [79, 43])))))))
+            (kEnd [80, 2] - [80, 5]))))
+      (declVars [82, 0] - [84, 30]
+        (kVar [82, 0] - [82, 3])
+        (comment [83, 2] - [83, 24])
+        (declVar [84, 2] - [84, 30]
+          name: (identifier [84, 2] - [84, 14])
+          type: (type [84, 16] - [84, 29]
+            (typeref [84, 16] - [84, 29]
+              (identifier [84, 16] - [84, 29]))))))
+    (implementation [86, 0] - [245, 4]
+      (kImplementation [86, 0] - [86, 14])
+      (comment [88, 0] - [88, 67])
+      (pp [89, 0] - [89, 10])
+      (declUses [91, 0] - [94, 14]
+        (kUses [91, 0] - [91, 4])
+        (comment [92, 2] - [92, 70])
+        (moduleName [93, 2] - [93, 16]
+          (identifier [93, 2] - [93, 8])
+          (kDot [93, 8] - [93, 9])
+          (identifier [93, 9] - [93, 16]))
+        (moduleName [94, 2] - [94, 13]
+          (identifier [94, 2] - [94, 5])
+          (kDot [94, 5] - [94, 6])
+          (identifier [94, 6] - [94, 13])))
+      (comment [96, 0] - [96, 17])
+      (comment [98, 0] - [98, 208])
+      (comment [99, 0] - [99, 75])
+      (defProc [100, 0] - [114, 4]
+        header: (declProc [100, 0] - [100, 53]
+          (kConstructor [100, 0] - [100, 11])
+          name: (genericDot [100, 12] - [100, 32]
+            lhs: (identifier [100, 12] - [100, 25])
+            operator: (kDot [100, 25] - [100, 26])
+            rhs: (identifier [100, 26] - [100, 32]))
+          args: (declArgs [100, 32] - [100, 52]
+            (declArg [100, 33] - [100, 51]
+              name: (identifier [100, 33] - [100, 39])
+              type: (type [100, 41] - [100, 51]
+                (typeref [100, 41] - [100, 51]
+                  (identifier [100, 41] - [100, 51]))))))
+        body: (block [101, 0] - [114, 3]
+          (kBegin [101, 0] - [101, 5])
+          (statement [102, 2] - [102, 27]
+            (exprCall [102, 2] - [102, 26]
+              entity: (inherited [102, 2] - [102, 18]
+                (kInherited [102, 2] - [102, 11])
+                (identifier [102, 12] - [102, 18]))
+              args: (exprArgs [102, 19] - [102, 25]
+                (identifier [102, 19] - [102, 25]))))
+          (comment [103, 2] - [103, 58])
+          (assignment [104, 2] - [104, 51]
+            lhs: (identifier [104, 2] - [104, 12])
+            operator: (kAssign [104, 13] - [104, 15])
+            rhs: (exprCall [104, 16] - [104, 51]
+              entity: (exprDot [104, 16] - [104, 45]
+                lhs: (exprTpl [104, 16] - [104, 38]
+                  entity: (identifier [104, 16] - [104, 27])
+                  (kLt [104, 27] - [104, 28])
+                  args: (identifier [104, 28] - [104, 37])
+                  (kGt [104, 37] - [104, 38]))
+                operator: (kDot [104, 38] - [104, 39])
+                rhs: (identifier [104, 39] - [104, 45]))
+              args: (exprArgs [104, 46] - [104, 50]
+                (kTrue [104, 46] - [104, 50]))))
+          (assignment [105, 2] - [105, 21]
+            lhs: (identifier [105, 2] - [105, 15])
+            operator: (kAssign [105, 16] - [105, 18])
+            rhs: (literalNumber [105, 19] - [105, 21]))
+          (comment [107, 2] - [107, 77])
+          (comment [108, 2] - [108, 42])
+          (pp [109, 2] - [109, 16])
+          (assignment [110, 2] - [110, 33]
+            lhs: (identifier [110, 2] - [110, 11])
+            operator: (kAssign [110, 12] - [110, 14])
+            rhs: (exprDot [110, 15] - [110, 33]
+              lhs: (identifier [110, 15] - [110, 26])
+              operator: (kDot [110, 26] - [110, 27])
+              rhs: (identifier [110, 27] - [110, 33])))
+          (statement [111, 2] - [111, 66]
+            (exprCall [111, 2] - [111, 65]
+              entity: (exprDot [111, 2] - [111, 15]
+                lhs: (identifier [111, 2] - [111, 11])
+                operator: (kDot [111, 11] - [111, 12])
+                rhs: (identifier [111, 12] - [111, 15]))
+              args: (exprArgs [111, 16] - [111, 64]
+                (exprBinary [111, 16] - [111, 64]
+                  lhs: (literalString [111, 16] - [111, 43])
+                  operator: (kAdd [111, 44] - [111, 45])
+                  rhs: (exprCall [111, 46] - [111, 64]
+                    entity: (identifier [111, 46] - [111, 59])
+                    args: (exprArgs [111, 60] - [111, 63]
+                      (identifier [111, 60] - [111, 63])))))))
+          (statement [112, 2] - [112, 18]
+            (identifier [112, 2] - [112, 17]))
+          (pp [113, 2] - [113, 10])
+          (kEnd [114, 0] - [114, 3])))
+      (defProc [116, 0] - [124, 4]
+        header: (declProc [116, 0] - [116, 33]
+          (kDestructor [116, 0] - [116, 10])
+          name: (genericDot [116, 11] - [116, 32]
+            lhs: (identifier [116, 11] - [116, 24])
+            operator: (kDot [116, 24] - [116, 25])
+            rhs: (identifier [116, 25] - [116, 32])))
+        body: (block [117, 0] - [124, 3]
+          (kBegin [117, 0] - [117, 5])
+          (pp [118, 2] - [118, 16])
+          (statement [119, 2] - [119, 17]
+            (exprDot [119, 2] - [119, 16]
+              lhs: (identifier [119, 2] - [119, 11])
+              operator: (kDot [119, 11] - [119, 12])
+              rhs: (identifier [119, 12] - [119, 16])))
+          (pp [120, 2] - [120, 10])
+          (comment [121, 2] - [121, 33])
+          (statement [122, 2] - [122, 18]
+            (exprDot [122, 2] - [122, 17]
+              lhs: (identifier [122, 2] - [122, 12])
+              operator: (kDot [122, 12] - [122, 13])
+              rhs: (identifier [122, 13] - [122, 17])))
+          (statement [123, 2] - [123, 20]
+            (inherited [123, 2] - [123, 19]
+              (kInherited [123, 2] - [123, 11])
+              (identifier [123, 12] - [123, 19])))
+          (kEnd [124, 0] - [124, 3])))
+      (defProc [126, 0] - [148, 4]
+        header: (declProc [126, 0] - [126, 38]
+          (kProcedure [126, 0] - [126, 9])
+          name: (genericDot [126, 10] - [126, 37]
+            lhs: (identifier [126, 10] - [126, 23])
+            operator: (kDot [126, 23] - [126, 24])
+            rhs: (identifier [126, 24] - [126, 37])))
+        local: (declVars [127, 0] - [129, 13]
+          (kVar [127, 0] - [127, 3])
+          (declVar [128, 2] - [128, 23]
+            name: (identifier [128, 2] - [128, 11])
+            type: (type [128, 13] - [128, 22]
+              (typeref [128, 13] - [128, 22]
+                (identifier [128, 13] - [128, 22]))))
+          (declVar [129, 2] - [129, 13]
+            name: (identifier [129, 2] - [129, 3])
+            type: (type [129, 5] - [129, 12]
+              (typeref [129, 5] - [129, 12]
+                (identifier [129, 5] - [129, 12])))))
+        body: (block [130, 0] - [148, 3]
+          (kBegin [130, 0] - [130, 5])
+          (comment [131, 2] - [131, 43])
+          (statement [132, 2] - [132, 19]
+            (exprDot [132, 2] - [132, 18]
+              lhs: (identifier [132, 2] - [132, 12])
+              operator: (kDot [132, 12] - [132, 13])
+              rhs: (identifier [132, 13] - [132, 18])))
+          (try [133, 2] - [147, 6]
+            (kTry [133, 2] - [133, 5])
+            try: (statements [134, 4] - [142, 8]
+              (for [134, 4] - [142, 8]
+                (kFor [134, 4] - [134, 7])
+                start: (assignment [134, 8] - [134, 14]
+                  lhs: (identifier [134, 8] - [134, 9])
+                  operator: (kAssign [134, 10] - [134, 12])
+                  rhs: (literalNumber [134, 13] - [134, 14]))
+                (kTo [134, 15] - [134, 17])
+                end: (literalNumber [134, 18] - [134, 19])
+                (kDo [134, 20] - [134, 22])
+                body: (block [135, 4] - [142, 8]
+                  (kBegin [135, 4] - [135, 9])
+                  (comment [136, 6] - [136, 43])
+                  (assignment [137, 6] - [137, 35]
+                    lhs: (identifier [137, 6] - [137, 15])
+                    operator: (kAssign [137, 16] - [137, 18])
+                    rhs: (exprDot [137, 19] - [137, 35]
+                      lhs: (identifier [137, 19] - [137, 28])
+                      operator: (kDot [137, 28] - [137, 29])
+                      rhs: (identifier [137, 29] - [137, 35])))
+                  (comment [138, 6] - [138, 57])
+                  (assignment [139, 6] - [139, 49]
+                    lhs: (exprDot [139, 6] - [139, 20]
+                      lhs: (identifier [139, 6] - [139, 15])
+                      operator: (kDot [139, 15] - [139, 16])
+                      rhs: (identifier [139, 16] - [139, 20]))
+                    operator: (kAssign [139, 21] - [139, 23])
+                    rhs: (exprBinary [139, 24] - [139, 49]
+                      lhs: (literalString [139, 24] - [139, 35])
+                      operator: (kAdd [139, 36] - [139, 37])
+                      rhs: (exprCall [139, 38] - [139, 49]
+                        entity: (identifier [139, 38] - [139, 46])
+                        args: (exprArgs [139, 47] - [139, 48]
+                          (identifier [139, 47] - [139, 48])))))
+                  (comment [140, 6] - [140, 47])
+                  (statement [141, 6] - [141, 32]
+                    (exprCall [141, 6] - [141, 31]
+                      entity: (exprDot [141, 6] - [141, 20]
+                        lhs: (identifier [141, 6] - [141, 16])
+                        operator: (kDot [141, 16] - [141, 17])
+                        rhs: (identifier [141, 17] - [141, 20]))
+                      args: (exprArgs [141, 21] - [141, 30]
+                        (identifier [141, 21] - [141, 30]))))
+                  (kEnd [142, 4] - [142, 7]))))
+            except: (kExcept [143, 2] - [143, 8])
+            except: (exceptionHandler [144, 4] - [146, 59]
+              (kOn [144, 4] - [144, 6])
+              variable: (identifier [144, 7] - [144, 8])
+              exception: (typeref [144, 10] - [144, 19]
+                (identifier [144, 10] - [144, 19]))
+              (kDo [144, 20] - [144, 22])
+              (comment [145, 6] - [145, 38])
+              body: (statement [146, 6] - [146, 59]
+                (exprCall [146, 6] - [146, 58]
+                  entity: (identifier [146, 6] - [146, 17])
+                  args: (exprArgs [146, 18] - [146, 57]
+                    (exprBinary [146, 18] - [146, 57]
+                      lhs: (literalString [146, 18] - [146, 45])
+                      operator: (kAdd [146, 46] - [146, 47])
+                      rhs: (exprDot [146, 48] - [146, 57]
+                        lhs: (identifier [146, 48] - [146, 49])
+                        operator: (kDot [146, 49] - [146, 50])
+                        rhs: (identifier [146, 50] - [146, 57])))))))
+            (kEnd [147, 2] - [147, 5]))
+          (kEnd [148, 0] - [148, 3])))
+      (defProc [150, 0] - [156, 4]
+        header: (declProc [150, 0] - [150, 34]
+          (kProcedure [150, 0] - [150, 9])
+          name: (genericDot [150, 10] - [150, 33]
+            lhs: (identifier [150, 10] - [150, 23])
+            operator: (kDot [150, 23] - [150, 24])
+            rhs: (identifier [150, 24] - [150, 33])))
+        body: (block [151, 0] - [156, 3]
+          (kBegin [151, 0] - [151, 5])
+          (comment [152, 2] - [152, 54])
+          (statement [153, 2] - [153, 29]
+            (exprDot [153, 2] - [153, 28]
+              lhs: (exprSubscript [153, 2] - [153, 22]
+                entity: (exprDot [153, 2] - [153, 19]
+                  lhs: (identifier [153, 2] - [153, 14])
+                  operator: (kDot [153, 14] - [153, 15])
+                  rhs: (identifier [153, 15] - [153, 19]))
+                args: (exprArgs [153, 20] - [153, 21]
+                  (literalNumber [153, 20] - [153, 21])))
+              operator: (kDot [153, 22] - [153, 23])
+              rhs: (identifier [153, 23] - [153, 28])))
+          (comment [154, 2] - [154, 54])
+          (statement [155, 2] - [155, 29]
+            (exprDot [155, 2] - [155, 28]
+              lhs: (exprDot [155, 2] - [155, 22]
+                lhs: (identifier [155, 2] - [155, 14])
+                operator: (kDot [155, 14] - [155, 15])
+                rhs: (identifier [155, 15] - [155, 22]))
+              operator: (kDot [155, 22] - [155, 23])
+              rhs: (identifier [155, 23] - [155, 28])))
+          (kEnd [156, 0] - [156, 3])))
+      (defProc [158, 0] - [162, 4]
+        header: (declProc [158, 0] - [158, 31]
+          (kProcedure [158, 0] - [158, 9])
+          name: (genericDot [158, 10] - [158, 30]
+            lhs: (identifier [158, 10] - [158, 23])
+            operator: (kDot [158, 23] - [158, 24])
+            rhs: (identifier [158, 24] - [158, 30])))
+        body: (block [159, 0] - [162, 3]
+          (kBegin [159, 0] - [159, 5])
+          (statement [160, 2] - [160, 19]
+            (inherited [160, 2] - [160, 18]
+              (kInherited [160, 2] - [160, 11])
+              (identifier [160, 12] - [160, 18])))
+          (statement [161, 2] - [161, 16]
+            (identifier [161, 2] - [161, 15]))
+          (kEnd [162, 0] - [162, 3])))
+      (defProc [164, 0] - [169, 4]
+        header: (declProc [164, 0] - [164, 70]
+          (kProcedure [164, 0] - [164, 9])
+          name: (genericDot [164, 10] - [164, 41]
+            lhs: (identifier [164, 10] - [164, 23])
+            operator: (kDot [164, 23] - [164, 24])
+            rhs: (identifier [164, 24] - [164, 41]))
+          args: (declArgs [164, 41] - [164, 69]
+            (declArg [164, 42] - [164, 68]
+              (kConst [164, 42] - [164, 47])
+              name: (identifier [164, 48] - [164, 57])
+              type: (type [164, 59] - [164, 68]
+                (typeref [164, 59] - [164, 68]
+                  (identifier [164, 59] - [164, 68]))))))
+        body: (block [165, 0] - [169, 3]
+          (kBegin [165, 0] - [165, 5])
+          (if [166, 2] - [168, 28]
+            (kIf [166, 2] - [166, 4])
+            condition: (exprCall [166, 5] - [166, 24]
+              entity: (identifier [166, 5] - [166, 13])
+              args: (exprArgs [166, 14] - [166, 23]
+                (identifier [166, 14] - [166, 23])))
+            (kThen [166, 25] - [166, 29])
+            (comment [167, 4] - [167, 52])
+            then: (statement [168, 4] - [168, 28]
+              (exprDot [168, 4] - [168, 27]
+                lhs: (identifier [168, 4] - [168, 16])
+                operator: (kDot [168, 16] - [168, 17])
+                rhs: (identifier [168, 17] - [168, 27]))))
+          (kEnd [169, 0] - [169, 3])))
+      (defProc [171, 0] - [177, 4]
+        header: (declProc [171, 0] - [171, 54]
+          (kProcedure [171, 0] - [171, 9])
+          name: (genericDot [171, 10] - [171, 36]
+            lhs: (identifier [171, 10] - [171, 23])
+            operator: (kDot [171, 23] - [171, 24])
+            rhs: (identifier [171, 24] - [171, 36]))
+          args: (declArgs [171, 36] - [171, 53]
+            (declArg [171, 37] - [171, 52]
+              name: (identifier [171, 37] - [171, 43])
+              type: (type [171, 45] - [171, 52]
+                (typeref [171, 45] - [171, 52]
+                  (identifier [171, 45] - [171, 52]))))))
+        body: (block [172, 0] - [177, 3]
+          (kBegin [172, 0] - [172, 5])
+          (statement [173, 2] - [173, 16]
+            (identifier [173, 2] - [173, 15]))
+          (statement [174, 2] - [174, 12]
+            (identifier [174, 2] - [174, 11]))
+          (comment [175, 2] - [175, 54])
+          (assignment [176, 2] - [176, 47]
+            lhs: (exprDot [176, 2] - [176, 23]
+              lhs: (identifier [176, 2] - [176, 14])
+              operator: (kDot [176, 14] - [176, 15])
+              rhs: (identifier [176, 15] - [176, 23]))
+            operator: (kAssign [176, 24] - [176, 26])
+            rhs: (exprBinary [176, 27] - [176, 47]
+              lhs: (exprDot [176, 27] - [176, 43]
+                lhs: (identifier [176, 27] - [176, 37])
+                operator: (kDot [176, 37] - [176, 38])
+                rhs: (identifier [176, 38] - [176, 43]))
+              operator: (kAdd [176, 44] - [176, 45])
+              rhs: (literalNumber [176, 46] - [176, 47])))
+          (kEnd [177, 0] - [177, 3])))
+      (defProc [179, 0] - [204, 4]
+        header: (declProc [179, 0] - [179, 54]
+          (kProcedure [179, 0] - [179, 9])
+          name: (genericDot [179, 10] - [179, 36]
+            lhs: (identifier [179, 10] - [179, 23])
+            operator: (kDot [179, 23] - [179, 24])
+            rhs: (identifier [179, 24] - [179, 36]))
+          args: (declArgs [179, 36] - [179, 53]
+            (declArg [179, 37] - [179, 52]
+              name: (identifier [179, 37] - [179, 43])
+              type: (type [179, 45] - [179, 52]
+                (typeref [179, 45] - [179, 52]
+                  (identifier [179, 45] - [179, 52]))))))
+        local: (declVars [180, 0] - [181, 23]
+          (kVar [180, 0] - [180, 3])
+          (declVar [181, 2] - [181, 23]
+            name: (identifier [181, 2] - [181, 9])
+            type: (type [181, 11] - [181, 22]
+              (typeref [181, 11] - [181, 22]
+                (identifier [181, 11] - [181, 22])))))
+        body: (block [182, 0] - [204, 3]
+          (kBegin [182, 0] - [182, 5])
+          (comment [183, 2] - [183, 82])
+          (comment [184, 2] - [184, 70])
+          (pp [185, 2] - [185, 24])
+          (try [186, 2] - [199, 6]
+            (kTry [186, 2] - [186, 5])
+            (comment [187, 4] - [187, 43])
+            try: (statements [188, 4] - [195, 8]
+              (assignment [188, 4] - [188, 60]
+                lhs: (identifier [188, 4] - [188, 11])
+                operator: (kAssign [188, 12] - [188, 14])
+                rhs: (exprCall [188, 15] - [188, 60]
+                  entity: (exprDot [188, 15] - [188, 33]
+                    lhs: (identifier [188, 15] - [188, 26])
+                    operator: (kDot [188, 26] - [188, 27])
+                    rhs: (identifier [188, 27] - [188, 33]))
+                  args: (exprArgs [188, 34] - [188, 59]
+                    (literalString [188, 34] - [188, 49])
+                    (identifier [188, 51] - [188, 59]))))
+              (try [189, 4] - [195, 8]
+                (kTry [189, 4] - [189, 7])
+                (comment [190, 6] - [190, 49])
+                try: (statements [191, 6] - [192, 45]
+                  (statement [191, 6] - [191, 55]
+                    (exprCall [191, 6] - [191, 54]
+                      entity: (exprDot [191, 6] - [191, 19]
+                        lhs: (identifier [191, 6] - [191, 13])
+                        operator: (kDot [191, 13] - [191, 14])
+                        rhs: (identifier [191, 14] - [191, 19]))
+                      args: (exprArgs [191, 20] - [191, 53]
+                        (exprDot [191, 20] - [191, 36]
+                          lhs: (identifier [191, 20] - [191, 30])
+                          operator: (kDot [191, 30] - [191, 31])
+                          rhs: (identifier [191, 31] - [191, 36]))
+                        (exprCall [191, 38] - [191, 53]
+                          entity: (identifier [191, 38] - [191, 44])
+                          args: (exprArgs [191, 45] - [191, 52]
+                            (identifier [191, 45] - [191, 52]))))))
+                  (statement [192, 6] - [192, 45]
+                    (exprCall [192, 6] - [192, 44]
+                      entity: (identifier [192, 6] - [192, 18])
+                      args: (exprArgs [192, 19] - [192, 43]
+                        (literalString [192, 19] - [192, 25])
+                        (exprDot [192, 27] - [192, 43]
+                          lhs: (identifier [192, 27] - [192, 37])
+                          operator: (kDot [192, 37] - [192, 38])
+                          rhs: (identifier [192, 38] - [192, 43]))))))
+                finally: (kFinally [193, 4] - [193, 11])
+                finally: (statements [194, 6] - [194, 19]
+                  (statement [194, 6] - [194, 19]
+                    (exprDot [194, 6] - [194, 18]
+                      lhs: (identifier [194, 6] - [194, 13])
+                      operator: (kDot [194, 13] - [194, 14])
+                      rhs: (identifier [194, 14] - [194, 18]))))
+                (kEnd [195, 4] - [195, 7])))
+            except: (kExcept [196, 2] - [196, 8])
+            except: (exceptionHandler [197, 4] - [198, 54]
+              (kOn [197, 4] - [197, 6])
+              variable: (identifier [197, 7] - [197, 8])
+              exception: (typeref [197, 10] - [197, 23]
+                (identifier [197, 10] - [197, 23]))
+              (kDo [197, 24] - [197, 26])
+              body: (statement [198, 6] - [198, 54]
+                (exprCall [198, 6] - [198, 53]
+                  entity: (identifier [198, 6] - [198, 17])
+                  args: (exprArgs [198, 18] - [198, 52]
+                    (exprBinary [198, 18] - [198, 52]
+                      lhs: (literalString [198, 18] - [198, 40])
+                      operator: (kAdd [198, 41] - [198, 42])
+                      rhs: (exprDot [198, 43] - [198, 52]
+                        lhs: (identifier [198, 43] - [198, 44])
+                        operator: (kDot [198, 44] - [198, 45])
+                        rhs: (identifier [198, 45] - [198, 52])))))))
+            (kEnd [199, 2] - [199, 5]))
+          (pp [200, 2] - [200, 9])
+          (comment [201, 2] - [201, 72])
+          (statement [202, 2] - [202, 65]
+            (exprCall [202, 2] - [202, 64]
+              entity: (identifier [202, 2] - [202, 13])
+              args: (exprArgs [202, 14] - [202, 63]
+                (literalString [202, 14] - [202, 63]))))
+          (pp [203, 2] - [203, 10])
+          (kEnd [204, 0] - [204, 3])))
+      (defProc [206, 0] - [221, 4]
+        header: (declProc [206, 0] - [206, 52]
+          (kProcedure [206, 0] - [206, 9])
+          name: (genericDot [206, 10] - [206, 34]
+            lhs: (identifier [206, 10] - [206, 23])
+            operator: (kDot [206, 23] - [206, 24])
+            rhs: (identifier [206, 24] - [206, 34]))
+          args: (declArgs [206, 34] - [206, 51]
+            (declArg [206, 35] - [206, 50]
+              name: (identifier [206, 35] - [206, 41])
+              type: (type [206, 43] - [206, 50]
+                (typeref [206, 43] - [206, 50]
+                  (identifier [206, 43] - [206, 50]))))))
+        body: (block [207, 0] - [221, 3]
+          (kBegin [207, 0] - [207, 5])
+          (assignment [208, 2] - [208, 31]
+            lhs: (identifier [208, 2] - [208, 9])
+            operator: (kAssign [208, 10] - [208, 12])
+            rhs: (literalString [208, 13] - [208, 31]))
+          (comment [210, 2] - [210, 42])
+          (comment [211, 2] - [211, 80])
+          (comment [212, 2] - [212, 36])
+          (pp [213, 2] - [213, 16])
+          (assignment [214, 2] - [214, 33]
+            lhs: (identifier [214, 2] - [214, 9])
+            operator: (kAssign [214, 10] - [214, 12])
+            rhs: (exprBinary [214, 13] - [214, 33]
+              lhs: (identifier [214, 13] - [214, 20])
+              operator: (kAdd [214, 21] - [214, 22])
+              rhs: (literalString [214, 23] - [214, 33])))
+          (statement [215, 2] - [215, 18]
+            (identifier [215, 2] - [215, 17]))
+          (statement [216, 2] - [216, 18]
+            (identifier [216, 2] - [216, 17]))
+          (statement [217, 2] - [217, 91]
+            (exprCall [217, 2] - [217, 90]
+              entity: (identifier [217, 2] - [217, 13])
+              args: (exprArgs [217, 14] - [217, 89]
+                (exprBinary [217, 14] - [217, 89]
+                  lhs: (exprBinary [217, 14] - [217, 68]
+                    lhs: (literalString [217, 14] - [217, 34])
+                    operator: (kAdd [217, 35] - [217, 36])
+                    rhs: (exprCall [217, 37] - [217, 68]
+                      entity: (identifier [217, 37] - [217, 45])
+                      args: (exprArgs [217, 46] - [217, 67]
+                        (identifier [217, 46] - [217, 67]))))
+                  operator: (kAdd [217, 69] - [217, 70])
+                  rhs: (literalString [217, 71] - [217, 89])))))
+          (pp [218, 2] - [218, 9])
+          (assignment [219, 2] - [219, 32]
+            lhs: (identifier [219, 2] - [219, 9])
+            operator: (kAssign [219, 10] - [219, 12])
+            rhs: (exprBinary [219, 13] - [219, 32]
+              lhs: (identifier [219, 13] - [219, 20])
+              operator: (kAdd [219, 21] - [219, 22])
+              rhs: (literalString [219, 23] - [219, 32])))
+          (pp [220, 2] - [220, 10])
+          (kEnd [221, 0] - [221, 3])))
+      (defProc [223, 0] - [226, 4]
+        header: (declProc [223, 0] - [223, 57]
+          (kProcedure [223, 0] - [223, 9])
+          name: (genericDot [223, 10] - [223, 39]
+            lhs: (identifier [223, 10] - [223, 23])
+            operator: (kDot [223, 23] - [223, 24])
+            rhs: (identifier [223, 24] - [223, 39]))
+          args: (declArgs [223, 39] - [223, 56]
+            (declArg [223, 40] - [223, 55]
+              name: (identifier [223, 40] - [223, 46])
+              type: (type [223, 48] - [223, 55]
+                (typeref [223, 48] - [223, 55]
+                  (identifier [223, 48] - [223, 55]))))))
+        body: (block [224, 0] - [226, 3]
+          (kBegin [224, 0] - [224, 5])
+          (statement [225, 2] - [225, 16]
+            (identifier [225, 2] - [225, 15]))
+          (kEnd [226, 0] - [226, 3])))
+      (defProc [228, 0] - [231, 4]
+        header: (declProc [228, 0] - [228, 55]
+          (kProcedure [228, 0] - [228, 9])
+          name: (genericDot [228, 10] - [228, 37]
+            lhs: (identifier [228, 10] - [228, 23])
+            operator: (kDot [228, 23] - [228, 24])
+            rhs: (identifier [228, 24] - [228, 37]))
+          args: (declArgs [228, 37] - [228, 54]
+            (declArg [228, 38] - [228, 53]
+              name: (identifier [228, 38] - [228, 44])
+              type: (type [228, 46] - [228, 53]
+                (typeref [228, 46] - [228, 53]
+                  (identifier [228, 46] - [228, 53]))))))
+        body: (block [229, 0] - [231, 3]
+          (kBegin [229, 0] - [229, 5])
+          (statement [230, 2] - [230, 32]
+            (exprCall [230, 2] - [230, 31]
+              entity: (identifier [230, 2] - [230, 13])
+              args: (exprArgs [230, 14] - [230, 30]
+                (exprDot [230, 14] - [230, 30]
+                  lhs: (identifier [230, 14] - [230, 22])
+                  operator: (kDot [230, 22] - [230, 23])
+                  rhs: (identifier [230, 23] - [230, 30])))))
+          (kEnd [231, 0] - [231, 3])))
+      (comment [233, 0] - [233, 94])
+      (comment [234, 0] - [234, 86])
+      (pp [235, 0] - [235, 16])
+      (defProc [236, 0] - [239, 4]
+        header: (declProc [236, 0] - [236, 53]
+          (kProcedure [236, 0] - [236, 9])
+          name: (genericDot [236, 10] - [236, 32]
+            lhs: (identifier [236, 10] - [236, 23])
+            operator: (kDot [236, 23] - [236, 24])
+            rhs: (identifier [236, 24] - [236, 32]))
+          args: (declArgs [236, 32] - [236, 52]
+            (declArg [236, 33] - [236, 51]
+              (kConst [236, 33] - [236, 38])
+              name: (identifier [236, 39] - [236, 43])
+              type: (type [236, 45] - [236, 51]
+                (declString [236, 45] - [236, 51]
+                  (kString [236, 45] - [236, 51]))))))
+        body: (block [237, 0] - [239, 3]
+          (kBegin [237, 0] - [237, 5])
+          (statement [238, 2] - [238, 62]
+            (exprCall [238, 2] - [238, 61]
+              entity: (exprDot [238, 2] - [238, 15]
+                lhs: (identifier [238, 2] - [238, 11])
+                operator: (kDot [238, 11] - [238, 12])
+                rhs: (identifier [238, 12] - [238, 15]))
+              args: (exprArgs [238, 16] - [238, 60]
+                (exprBinary [238, 16] - [238, 60]
+                  lhs: (exprBinary [238, 16] - [238, 53]
+                    lhs: (exprCall [238, 16] - [238, 47]
+                      entity: (identifier [238, 16] - [238, 30])
+                      args: (exprArgs [238, 31] - [238, 46]
+                        (literalString [238, 31] - [238, 41])
+                        (identifier [238, 43] - [238, 46])))
+                    operator: (kAdd [238, 48] - [238, 49])
+                    rhs: (literalString [238, 50] - [238, 53]))
+                  operator: (kAdd [238, 54] - [238, 55])
+                  rhs: (identifier [238, 56] - [238, 60])))))
+          (kEnd [239, 0] - [239, 3])))
+      (defProc [241, 0] - [245, 4]
+        header: (declProc [241, 0] - [241, 33]
+          (kProcedure [241, 0] - [241, 9])
+          name: (genericDot [241, 10] - [241, 32]
+            lhs: (identifier [241, 10] - [241, 23])
+            operator: (kDot [241, 23] - [241, 24])
+            rhs: (identifier [241, 24] - [241, 32])))
+        body: (block [242, 0] - [245, 3]
+          (kBegin [242, 0] - [242, 5])
+          (statement [243, 2] - [243, 43]
+            (exprCall [243, 2] - [243, 42]
+              entity: (exprDot [243, 2] - [243, 22]
+                lhs: (identifier [243, 2] - [243, 11])
+                operator: (kDot [243, 11] - [243, 12])
+                rhs: (identifier [243, 12] - [243, 22]))
+              args: (exprArgs [243, 23] - [243, 41]
+                (literalString [243, 23] - [243, 41]))))
+          (statement [244, 2] - [244, 18]
+            (exprDot [244, 2] - [244, 17]
+              lhs: (identifier [244, 2] - [244, 11])
+              operator: (kDot [244, 11] - [244, 12])
+              rhs: (identifier [244, 12] - [244, 17])))
+          (kEnd [245, 0] - [245, 3]))))
+    (pp [246, 0] - [246, 8])
+    (initialization [248, 0] - [250, 31]
+      (kInitialization [248, 0] - [248, 14])
+      (comment [249, 2] - [249, 61])
+      (statement [250, 2] - [250, 31]
+        (exprCall [250, 2] - [250, 30]
+          entity: (identifier [250, 2] - [250, 15])
+          args: (exprArgs [250, 16] - [250, 29]
+            (identifier [250, 16] - [250, 29])))))
+    (finalization [252, 0] - [252, 12]
+      (kFinalization [252, 0] - [252, 12]))
+    (comment [253, 2] - [253, 25])
+    (kEnd [255, 0] - [255, 3])
+    (kEndDot [255, 3] - [255, 4])))
