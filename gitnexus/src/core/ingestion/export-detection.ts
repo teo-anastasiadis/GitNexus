@@ -246,3 +246,18 @@ export const rubyExportChecker: ExportChecker = (_node, _name) => true;
 
 /** Dart: public if no leading underscore (convention, same as Python). */
 export const dartExportChecker: ExportChecker = (_node, name) => !name.startsWith('_');
+
+/**
+ * Pascal/Delphi: public if the declaration sits in the `interface` section of the unit.
+ * Anything inside the `implementation` section is unit-private.
+ * Top-level program files (no interface/implementation split) default to public.
+ */
+export const pascalExportChecker: ExportChecker = (node, _name) => {
+  let current: SyntaxNode | null = node;
+  while (current) {
+    if (current.type === 'interface') return true;
+    if (current.type === 'implementation') return false;
+    current = current.parent;
+  }
+  return true; // .dpr / .dpk program files — no section split, treat all as public
+};
