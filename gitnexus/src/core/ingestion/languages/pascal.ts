@@ -1,23 +1,26 @@
 /**
- * Delphi Pascal Language Provider — stub (Step 1).
+ * Delphi Pascal Language Provider — Step 5 (import resolver wired).
  *
- * parseStrategy and full implementation added in Step 2–8.
+ * Remaining stubs (typeConfig, exportChecker, extractors) are wired in Steps 6–8.
  */
 import { SupportedLanguages } from 'gitnexus-shared';
 import { defineLanguage } from '../language-provider.js';
+import { PASCAL_QUERIES } from '../tree-sitter-queries.js';
+import { createImportResolver } from '../import-resolvers/resolver-factory.js';
+import { pascalImportConfig } from '../import-resolvers/configs/pascal.js';
 
 export const pascalProvider = defineLanguage({
   id: SupportedLanguages.DelphiPascal,
-  parseStrategy: 'standalone',
   extensions: ['.pas', '.dpr', '.dpk', '.pp', '.lpr'],
   entryPointPatterns: [],
   astFrameworkPatterns: [],
-  treeSitterQueries: '',
+  treeSitterQueries: PASCAL_QUERIES,
   typeConfig: {
     declarationNodeTypes: new Set(),
     extractDeclaration: () => null,
     extractParameter: () => null,
   },
   exportChecker: () => false,
-  importResolver: () => null,
+  importResolver: createImportResolver(pascalImportConfig),
+  importSemantics: 'wildcard-leaf',
 });
