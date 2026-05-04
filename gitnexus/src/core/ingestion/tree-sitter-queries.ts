@@ -1505,9 +1505,21 @@ export const PASCAL_QUERIES = `
   header: (declProc
     name: (identifier) @name)) @definition.function
 
-; ── Forward declarations inside class bodies ─────────────────────────────────
-(declProc
-  name: (identifier) @name) @definition.method
+; ── Forward declarations: class methods (inside visibility section) ──────────
+(declSection
+  (declProc name: (identifier) @name) @definition.method)
+
+; ── Forward declarations: record methods (direct children of record body) ────
+(declClass
+  (declProc name: (identifier) @name) @definition.method)
+
+; ── Forward declarations: interface methods ──────────────────────────────────
+(declIntf
+  (declProc name: (identifier) @name) @definition.method)
+
+; ── Forward declarations: unit-scope procedures/functions (interface section) ─
+(interface
+  (declProc name: (identifier) @name) @definition.function)
 
 ; ── Field declarations ────────────────────────────────────────────────────────
 (declField
@@ -1530,9 +1542,9 @@ export const PASCAL_QUERIES = `
   name: (identifier) @name) @definition.variable
 
 ; ── Imports ──────────────────────────────────────────────────────────────────
-; Unit name is the last identifier child of moduleName (e.g. "SysUtils" from "System.SysUtils")
+; Capture each moduleName node; unit name = last identifier child (e.g. "SysUtils" from "System.SysUtils")
 (declUses
-  (moduleName) @import) @import
+  (moduleName) @import)
 
 ; ── Calls: direct with args — ShowMessage('x') ───────────────────────────────
 (exprCall
