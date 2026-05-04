@@ -207,6 +207,22 @@ describe('calculateEntryPointScore', () => {
       const result = calculateEntryPointScore(name, 'ruby', false, 0, 2);
       expect(result.reasons).toContain('entry-pattern');
     });
+
+    // Delphi/Pascal-specific patterns (VCL form lifecycle, service, general entry points).
+    // 'Run' is omitted — it is already matched by the universal pattern.
+    it.each([
+      'FormCreate',
+      'FormShow',
+      'FormActivate',
+      'Execute',
+      'Initialize',
+      'ServiceStart',
+      'ServiceExecute',
+      'ServiceStop',
+    ])('recognizes Delphi/Pascal pattern "%s"', (name) => {
+      const result = calculateEntryPointScore(name, 'delphi', false, 0, 2);
+      expect(result.reasons).toContain('entry-pattern');
+    });
   });
 
   describe('utility pattern penalty', () => {

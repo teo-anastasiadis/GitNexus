@@ -13,6 +13,7 @@ import {
   RUBY_QUERIES,
   SWIFT_QUERIES,
   DART_QUERIES,
+  PASCAL_QUERIES,
 } from '../../src/core/ingestion/tree-sitter-queries.js';
 
 describe('tree-sitter queries', () => {
@@ -428,6 +429,71 @@ describe('tree-sitter queries', () => {
     it('Dart captures declaration as @definition.variable', () => {
       expect(DART_QUERIES).toContain('(declaration');
       expect(DART_QUERIES).toContain('@definition.variable');
+    });
+
+    it('Pascal captures declVar and declConst as @definition.variable', () => {
+      expect(PASCAL_QUERIES).toContain('declVar');
+      expect(PASCAL_QUERIES).toContain('declConst');
+      expect(PASCAL_QUERIES).toContain('@definition.variable');
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+  // Pascal queries
+  // ---------------------------------------------------------------------------
+
+  describe('Pascal queries', () => {
+    it('captures class and interface type declarations', () => {
+      expect(PASCAL_QUERIES).toContain('@definition.class');
+      expect(PASCAL_QUERIES).toContain('declClass');
+      expect(PASCAL_QUERIES).toContain('declIntf');
+    });
+
+    it('captures class method implementations (TFoo.Bar pattern)', () => {
+      expect(PASCAL_QUERIES).toContain('@definition.method');
+      expect(PASCAL_QUERIES).toContain('genericDot');
+    });
+
+    it('captures top-level function and procedure implementations', () => {
+      expect(PASCAL_QUERIES).toContain('@definition.function');
+      expect(PASCAL_QUERIES).toContain('defProc');
+    });
+
+    it('captures forward declarations inside class and interface bodies', () => {
+      expect(PASCAL_QUERIES).toContain('declSection');
+      expect(PASCAL_QUERIES).toContain('declIntf');
+    });
+
+    it('captures field and property declarations', () => {
+      expect(PASCAL_QUERIES).toContain('@definition.property');
+      expect(PASCAL_QUERIES).toContain('declField');
+      expect(PASCAL_QUERIES).toContain('declProp');
+    });
+
+    it('captures uses clause imports', () => {
+      expect(PASCAL_QUERIES).toContain('@import');
+      expect(PASCAL_QUERIES).toContain('declUses');
+      expect(PASCAL_QUERIES).toContain('moduleName');
+    });
+
+    it('captures direct calls with arguments', () => {
+      expect(PASCAL_QUERIES).toContain('@call');
+      expect(PASCAL_QUERIES).toContain('exprCall');
+    });
+
+    it('captures method calls via dot notation (FList.Add)', () => {
+      expect(PASCAL_QUERIES).toContain('exprDot');
+      expect(PASCAL_QUERIES).toContain('@call.name');
+    });
+
+    it('captures no-paren procedure calls (FList.Free style)', () => {
+      expect(PASCAL_QUERIES).toContain('statement');
+    });
+
+    it('captures heritage (extends base class)', () => {
+      expect(PASCAL_QUERIES).toContain('@heritage.parent');
+      expect(PASCAL_QUERIES).toContain('@heritage.class');
+      expect(PASCAL_QUERIES).toContain('typeref');
     });
   });
 });
