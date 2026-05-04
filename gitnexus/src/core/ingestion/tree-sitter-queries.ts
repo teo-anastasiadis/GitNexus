@@ -1481,6 +1481,87 @@ export const DART_QUERIES = `
       (type_identifier) @heritage.trait))) @heritage
 `;
 
+export const PASCAL_QUERIES = `
+; ── Classes ──────────────────────────────────────────────────────────────────
+(declType
+  name: (identifier) @name
+  type: (declClass)) @definition.class
+
+; ── Interfaces ───────────────────────────────────────────────────────────────
+(declType
+  name: (identifier) @name
+  type: (declIntf)) @definition.class
+
+; ── Class method implementations (TFoo.Bar) ──────────────────────────────────
+; name field is genericDot — capture rhs (method name) only
+(defProc
+  header: (declProc
+    name: (genericDot
+      rhs: (identifier) @name))) @definition.method
+
+; ── Top-level function/procedure implementations ─────────────────────────────
+; name field is a plain identifier (no dot)
+(defProc
+  header: (declProc
+    name: (identifier) @name)) @definition.function
+
+; ── Forward declarations inside class bodies ─────────────────────────────────
+(declProc
+  name: (identifier) @name) @definition.method
+
+; ── Field declarations ────────────────────────────────────────────────────────
+(declField
+  name: (identifier) @name) @definition.property
+
+; ── Property declarations ─────────────────────────────────────────────────────
+(declProp
+  name: (identifier) @name) @definition.property
+
+; ── Type aliases ─────────────────────────────────────────────────────────────
+(declType
+  name: (identifier) @name) @definition.type
+
+; ── Constants ────────────────────────────────────────────────────────────────
+(declConst
+  name: (identifier) @name) @definition.variable
+
+; ── Variables ────────────────────────────────────────────────────────────────
+(declVar
+  name: (identifier) @name) @definition.variable
+
+; ── Imports ──────────────────────────────────────────────────────────────────
+; Unit name is the last identifier child of moduleName (e.g. "SysUtils" from "System.SysUtils")
+(declUses
+  (moduleName) @import) @import
+
+; ── Calls: direct with args — ShowMessage('x') ───────────────────────────────
+(exprCall
+  entity: (identifier) @call.name) @call
+
+; ── Calls: method with args — FList.Add(x) ───────────────────────────────────
+(exprCall
+  entity: (exprDot
+    rhs: (identifier) @call.name)) @call
+
+; ── Calls: no-paren method — FList.Free ──────────────────────────────────────
+; Delphi allows procedure calls without (); appears as statement → exprDot
+(statement
+  (exprDot
+    rhs: (identifier) @call.name)) @call
+
+; ── Calls: no-paren bare procedure — VerifyInvariant ─────────────────────────
+(statement
+  (identifier) @call.name) @call
+
+; ── Heritage ─────────────────────────────────────────────────────────────────
+; Both base class and interfaces use parent: field in declClass.
+(declType
+  name: (identifier) @heritage.class
+  type: (declClass
+    parent: (typeref
+      (identifier) @heritage.parent))) @heritage
+`;
+
 import { SupportedLanguages } from 'gitnexus-shared';
 
 export const LANGUAGE_QUERIES: Record<SupportedLanguages, string> = {
@@ -1500,6 +1581,6 @@ export const LANGUAGE_QUERIES: Record<SupportedLanguages, string> = {
   [SupportedLanguages.Dart]: DART_QUERIES,
   [SupportedLanguages.Vue]: TYPESCRIPT_QUERIES, // Vue <script> blocks are parsed as TypeScript
   [SupportedLanguages.Cobol]: '', // Standalone regex processor — no tree-sitter queries
-  [SupportedLanguages.DelphiPascal]: '', // TODO Step 3: add PASCAL_QUERIES
+  [SupportedLanguages.DelphiPascal]: PASCAL_QUERIES,
   [SupportedLanguages.DFM]: '', // Standalone DFM processor — no tree-sitter queries
 };
