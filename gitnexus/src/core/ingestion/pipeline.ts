@@ -25,6 +25,7 @@ import {
   structurePhase,
   markdownPhase,
   cobolPhase,
+  dfmPhase,
   parsePhase,
   routesPhase,
   toolsPhase,
@@ -64,7 +65,7 @@ export interface PipelineOptions {
  *
  * Phase dependency graph:
  *
- *   scan → structure → [markdown, cobol] → parse → [routes, tools, orm]
+ *   scan → structure → [markdown, cobol, dfm] → parse → [routes, tools, orm]
  *     → crossFile → mro → communities → processes
  *
  * To add a new phase: create a file in pipeline-phases/, export the phase
@@ -76,6 +77,7 @@ function buildPhaseList(options?: PipelineOptions): PipelinePhase[] {
     structurePhase,
     markdownPhase,
     cobolPhase,
+    dfmPhase,
     parsePhase,
     routesPhase,
     toolsPhase,
