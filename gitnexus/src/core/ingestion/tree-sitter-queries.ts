@@ -1542,9 +1542,10 @@ export const PASCAL_QUERIES = `
   name: (identifier) @name) @definition.variable
 
 ; ── Imports ──────────────────────────────────────────────────────────────────
-; Capture each moduleName node; unit name = last identifier child (e.g. "SysUtils" from "System.SysUtils")
+; Capture each moduleName node as @import.source (required by import-processor)
+; and the enclosing declUses as @import.
 (declUses
-  (moduleName) @import)
+  (moduleName) @import.source) @import
 
 ; ── Calls: direct with args — ShowMessage('x') ───────────────────────────────
 (exprCall
@@ -1571,7 +1572,7 @@ export const PASCAL_QUERIES = `
   name: (identifier) @heritage.class
   type: (declClass
     parent: (typeref
-      (identifier) @heritage.parent))) @heritage
+      (identifier) @heritage.extends))) @heritage
 `;
 
 import { SupportedLanguages } from 'gitnexus-shared';

@@ -288,7 +288,14 @@ export const createSymbolTable = (): InternalSymbolTable => {
     if (!fileMap.has(name)) {
       fileMap.set(name, [def]);
     } else {
-      fileMap.get(name)!.push(def);
+      const existing = fileMap.get(name)!;
+      // Deduplicate: skip if this exact nodeId is already registered for this
+      // file+name. Prevents double-entries when both a forward declaration and
+      // its implementation are captured by separate query patterns (e.g. Pascal
+      // interface-section declProc + defProc body both map to the same nodeId).
+      if (!existing.some((d) => d.nodeId === def.nodeId)) {
+        existing.push(def);
+      }
     }
 
     // B. Callable Index — gated by FREE_CALLABLE_TYPES.

@@ -210,6 +210,21 @@ export const pascalMethodConfig: MethodExtractionConfig = {
   // Explicitly opt out of static-owner detection (handled via isPascalStatic)
   staticOwnerTypes: new Set(),
 
+  // Used by findEnclosingFunction (call-processor) when walking up from a call
+  // site to the containing defProc/declProc. Returns the bare method name so
+  // that Persist→Validate CALLS edges are attributed to Persist, not to File.
+  extractFunctionName(node: SyntaxNode) {
+    if (node.type !== 'defProc' && node.type !== 'declProc') return null;
+    const name = extractPascalName(node);
+    if (!name) return null;
+    // Top-level implementations (identifier name) → Function; dotted (TFoo.Bar) → Method
+    const header = getProcHeader(node);
+    const nameNode = header?.childForFieldName('name');
+    const label: import('gitnexus-shared').NodeLabel =
+      nameNode?.type === 'genericDot' ? 'Method' : 'Function';
+    return { funcName: name, label };
+  },
+
   extractName: extractPascalName,
   extractReturnType: extractPascalReturnType,
   extractParameters: extractPascalParameters,

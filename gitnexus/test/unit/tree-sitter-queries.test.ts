@@ -472,6 +472,7 @@ describe('tree-sitter queries', () => {
 
     it('captures uses clause imports', () => {
       expect(PASCAL_QUERIES).toContain('@import');
+      expect(PASCAL_QUERIES).toContain('@import.source');
       expect(PASCAL_QUERIES).toContain('declUses');
       expect(PASCAL_QUERIES).toContain('moduleName');
     });
@@ -491,7 +492,7 @@ describe('tree-sitter queries', () => {
     });
 
     it('captures heritage (extends base class)', () => {
-      expect(PASCAL_QUERIES).toContain('@heritage.parent');
+      expect(PASCAL_QUERIES).toContain('@heritage.extends');
       expect(PASCAL_QUERIES).toContain('@heritage.class');
       expect(PASCAL_QUERIES).toContain('typeref');
     });

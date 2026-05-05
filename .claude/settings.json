@@ -11,7 +11,12 @@
       "Bash(echo \"EXIT: $?\")",
       "Bash(npm ls *)",
       "Bash(git -C /home/teo/GitNexus status)",
-      "Bash(git -C /home/teo/GitNexus ls-files probe/)"
+      "Bash(git -C /home/teo/GitNexus ls-files probe/)",
+      "Bash(/home/teo/GitNexus/gitnexus/node_modules/typescript/bin/tsc --project tsconfig.json)",
+      "Bash(node_modules/typescript/bin/tsc --noEmit --project tsconfig.json)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(node -e ' *)"
     ]
   }
 }

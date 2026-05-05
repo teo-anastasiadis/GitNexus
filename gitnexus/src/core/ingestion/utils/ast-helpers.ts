@@ -95,6 +95,8 @@ export const FUNCTION_NODE_TYPES = new Set([
   // Dart
   'function_signature',
   'method_signature',
+  // Delphi/Pascal: procedure/function implementation block
+  'defProc',
 ]);
 
 /**
