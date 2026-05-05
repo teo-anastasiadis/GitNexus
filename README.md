@@ -1,30 +1,43 @@
-# GitNexus
-**⚠️ Important Notice:** GitNexus has NO official cryptocurrency, token, or coin. Any token/coin using the GitNexus name on Pump.fun or any other platform is **not affiliated with, endorsed by, or created by** this project or its maintainers. Do not purchase any cryptocurrency claiming association with GitNexus.
+# GitNexus — Delphi/Pascal Fork
 
-<div align="center">
+> **This is a fork of [GitNexus](https://github.com/abhigyanpatwari/GitNexus) that adds full Delphi/Pascal language support.**
+> Install it alongside the original CLI to index Delphi codebases into the same LadybugDB that GitNexus uses for all other languages.
 
-  <a href="https://trendshift.io/repositories/19809" target="_blank">
-    <img src="https://trendshift.io/api/badge/repositories/19809" alt="abhigyanpatwari%2FGitNexus | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/>
-  </a>
+## Delphi/Pascal Support
 
-  <h2>Join the official Discord to discuss ideas, issues etc!</h2>
+### Install from GitHub
 
-  <a href="https://discord.gg/MgJrmsqr62">
-    <img src="https://img.shields.io/discord/1477255801545429032?color=5865F2&logo=discord&logoColor=white" alt="Discord"/>
-  </a>
-  <a href="https://www.npmjs.com/package/gitnexus">
-    <img src="https://img.shields.io/npm/v/gitnexus.svg" alt="npm version"/>
-  </a>
-  <a href="https://polyformproject.org/licenses/noncommercial/1.0.0/">
-    <img src="https://img.shields.io/badge/License-PolyForm%20Noncommercial-blue.svg" alt="License: PolyForm Noncommercial"/>
-  </a>
-  <a href="https://securityscorecards.dev/viewer/?uri=github.com/abhigyanpatwari/GitNexus">
-    <img src="https://api.securityscorecards.dev/projects/github.com/abhigyanpatwari/GitNexus/badge" alt="OpenSSF Scorecard"/>
-  </a>
+```bash
+npm install -g github:teo-anastasiadis/gitnexus-delphi
+```
 
-  <p><strong>Enterprise (SaaS & Self-hosted)</strong> - <a href="https://akonlabs.com">akonlabs.com</a></p>
+### Usage
 
-</div>
+```bash
+# Index a Delphi project (writes to the shared ~/.gitnexus registry)
+gitnexus-delphi analyze /path/to/delphi-project
+
+# Then use the original gitnexus MCP or CLI to query it like any other repo
+gitnexus list
+gitnexus mcp
+```
+
+The indexed data is written in the standard LadybugDB format (`.gitnexus/` inside the project, pointer in `~/.gitnexus/registry.json`). The original `gitnexus mcp` server will serve Delphi repos alongside all others with no extra configuration.
+
+### What's indexed
+
+| Feature | Delphi/Pascal |
+|---------|--------------|
+| Imports (`uses` clause) | ✓ |
+| Classes, interfaces, records | ✓ |
+| Methods, functions, procedures | ✓ |
+| Heritage (inheritance) | ✓ |
+| Cross-file CALLS edges | ✓ |
+| DFM form files | ✓ (skipped — binary/text, not analyzed) |
+
+For implementation details see [ADDING_DELPHI.md](ADDING_DELPHI.md).
+
+---
 
 **Building nervous system for agent context.**
 
@@ -43,11 +56,6 @@ https://github.com/user-attachments/assets/172685ba-8e54-4ea7-9ad1-e31a3398da72
 
 ---
 
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=abhigyanpatwari/GitNexus&type=date&legend=top-left)](https://www.star-history.com/#abhigyanpatwari/GitNexus&type=date&legend=top-left)
-
-
 ## Two Ways to Use GitNexus
 
 |                   | **CLI + MCP**                                            | **Web UI**                                             |
@@ -55,34 +63,12 @@ https://github.com/user-attachments/assets/172685ba-8e54-4ea7-9ad1-e31a3398da72
 | **What**    | Index repos locally, connect AI agents via MCP                 | Visual graph explorer + AI chat in browser                   |
 | **For**     | Daily development with Cursor, Claude Code, Codex, Windsurf, OpenCode | Quick exploration, demos, one-off analysis                   |
 | **Scale**   | Full repos, any size                                           | Limited by browser memory (~5k files), or unlimited via backend mode |
-| **Install** | `npm install -g gitnexus`                                    | No install — [gitnexus.vercel.app](https://gitnexus.vercel.app) |
+| **Install** | `npm install -g github:teo-anastasiadis/gitnexus-delphi`           | No install — [gitnexus.vercel.app](https://gitnexus.vercel.app) |
 | **Storage** | LadybugDB native (fast, persistent)                               | LadybugDB WASM (in-memory, per session)                         |
 | **Parsing** | Tree-sitter native bindings                                    | Tree-sitter WASM                                             |
 | **Privacy** | Everything local, no network                                   | Everything in-browser, no server                             |
 
 > **Bridge mode:** `gitnexus serve` connects the two — the web UI auto-detects the local server and can browse all your CLI-indexed repos without re-uploading or re-indexing.
-
----
-
-## Enterprise
-
-GitNexus is available as an **enterprise offering** - either as a fully managed **SaaS** or a **self-hosted** deployment. Also available for **commercial use** of the OSS version with proper licensing.
-
-Enterprise includes:
-- **PR Review** - automated blast radius analysis on pull requests
-- **Auto-updating Code Wiki** - always up-to-date documentation (Code Wiki is also available in OSS)
-- **Auto-reindexing** - knowledge graph stays fresh automatically
-- **Multi-repo support** - unified graph across repositories
-- **OCaml support** - additional language coverage
-- **Priority feature/language support** - request new languages or features
-
-**Upcoming:**
-- Auto regression forensics
-- End-to-end test generation
-
-👉 Learn more at [akonlabs.com](https://akonlabs.com)
-
-💬 For commercial licensing or enterprise inquiries, ping us on [Discord](https://discord.gg/AAsRVT6fGb) or drop an email at founders@akonlabs.com
 
 ---
 
@@ -101,13 +87,16 @@ The CLI indexes your repository and runs an MCP server that gives AI agents deep
 ### Quick Start
 
 ```bash
-# Index your repo (run from repo root)
-npx gitnexus analyze
+# Index a Delphi project (run from project root, or pass a path)
+gitnexus-delphi analyze
+
+# Then start the MCP server using the original gitnexus CLI
+gitnexus mcp
 ```
 
-That's it. This indexes the codebase, installs agent skills, registers Claude Code hooks, and creates `AGENTS.md` / `CLAUDE.md` context files — all in one command.
+`gitnexus-delphi analyze` indexes the codebase and registers it in the shared `~/.gitnexus/registry.json`. The original `gitnexus` CLI's MCP server picks it up automatically alongside any other indexed repos.
 
-To configure MCP for your editor, run `npx gitnexus setup` once — or set it up manually below.
+To configure MCP for your editor, run `gitnexus setup` once (from the original `gitnexus` install) — or set it up manually below.
 
 ### MCP Setup
 
@@ -344,171 +333,6 @@ npm run dev
 npx gitnexus@latest serve
 ```
 
-## Docker
-
-The official Docker setup ships **two signed images** orchestrated by `docker-compose.yaml`. Each image is published to both **GitHub Container Registry** (GHCR) and **Docker Hub** — same build, same digest, same Cosign signature — so pick whichever registry you prefer:
-
-| Purpose                                                                | GHCR (default in `docker-compose.yaml`)       | Docker Hub mirror                           |
-| ---------------------------------------------------------------------- | --------------------------------------------- | ------------------------------------------- |
-| CLI / `gitnexus serve` backend (HTTP API on port `4747`, MCP, indexer) | `ghcr.io/abhigyanpatwari/gitnexus:latest`     | `akonlabs/gitnexus:latest`                  |
-| Static web UI (port `4173`)                                            | `ghcr.io/abhigyanpatwari/gitnexus-web:latest` | `akonlabs/gitnexus-web:latest`              |
-
-> **Heads-up — image rename.** Earlier releases published the web UI under
-> `ghcr.io/abhigyanpatwari/gitnexus`. Starting with the introduction of the
-> bundled backend, that slug now hosts the CLI/server image and the UI moved
-> to `ghcr.io/abhigyanpatwari/gitnexus-web`. The previous tags remain
-> available for pulling, but new versions are only published under the new
-> slugs. Update your `docker run` / compose files accordingly (or just adopt
-> the bundled compose).
-
-### One-command setup
-
-```bash
-docker compose up -d
-```
-
-This starts the server on `http://localhost:4747` and the web UI on
-`http://localhost:4173`. The UI auto-detects the server because the browser
-runs on the host and reaches the container via the mapped port.
-
-A named volume (`gitnexus-data`) persists the global registry, indexes, and
-cloned repos at `/data/gitnexus` inside the server container. To make repos on
-your host machine indexable, set `WORKSPACE_DIR` before bringing the stack up:
-
-```bash
-WORKSPACE_DIR=$HOME/code docker compose up -d
-# Inside the server container the directory is mounted read-only at /workspace.
-docker compose exec gitnexus-server gitnexus index /workspace/my-repo
-```
-
-### Direct `docker run`
-
-```bash
-# Server
-docker run --rm -d \
-  --name gitnexus-server \
-  -p 4747:4747 \
-  -v gitnexus-data:/data/gitnexus \
-  ghcr.io/abhigyanpatwari/gitnexus:latest
-
-# Web UI
-docker run --rm -d \
-  --name gitnexus-web \
-  -p 4173:4173 \
-  ghcr.io/abhigyanpatwari/gitnexus-web:latest
-```
-
-Optional env file (override image tags, container names, ports, workspace dir):
-
-```bash
-cp .env.example .env
-docker compose --env-file .env up -d
-```
-
-### Versioning & supply-chain protection
-
-The Docker images are version-locked to the npm package:
-
-- Stable images are **only published from `vX.Y.Z` git tags** (via `docker.yml`
-  triggered directly by the tag push), and the workflow refuses to build unless
-  the tag exactly matches `gitnexus/package.json`'s version. So
-  `ghcr.io/abhigyanpatwari/gitnexus:1.6.2` (and its Docker Hub mirror
-  `akonlabs/gitnexus:1.6.2`) is byte-for-byte the same release as
-  `npm install gitnexus@1.6.2` — no drift, no floating builds from `main`.
-  Both registries receive the same digest from a single build step, so you can
-  pull from either and the signature verifies identically.
-- Release-candidate images (e.g. `:1.7.0-rc.1`) are published alongside each
-  RC npm release. They are built by `release-candidate.yml` calling `docker.yml`
-  as a reusable workflow after the RC tag is created and pushed.
-- `:latest` is auto-promoted only from non-prerelease tags by the Docker
-  metadata action, so it always points at a real, npm-published version.
-
-Both images are signed with [Cosign keyless signing][cosign-keyless] using the
-workflow's GitHub OIDC identity, and shipped with build provenance and SBOM
-attestations. **This is your protection against supply-chain attacks**: even if
-an attacker republishes a same-named image elsewhere (or somehow pushes to a
-typo-squatted registry), they cannot forge a Cosign signature tied to
-`abhigyanpatwari/GitNexus`'s `docker.yml`. Always verify before pulling into
-sensitive environments:
-
-**Stable releases** — signed from the `v*` tag ref:
-
-```bash
-cosign verify ghcr.io/abhigyanpatwari/gitnexus:1.6.2 \
-  --certificate-identity-regexp '^https://github\.com/abhigyanpatwari/GitNexus/\.github/workflows/docker\.yml@refs/tags/v[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.]+)?$' \
-  --certificate-oidc-issuer https://token.actions.githubusercontent.com
-
-# Same signature verifies the Docker Hub mirror (identical digest):
-cosign verify docker.io/akonlabs/gitnexus:1.6.2 \
-  --certificate-identity-regexp '^https://github\.com/abhigyanpatwari/GitNexus/\.github/workflows/docker\.yml@refs/tags/v[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.]+)?$' \
-  --certificate-oidc-issuer https://token.actions.githubusercontent.com
-```
-
-The regex pins the certificate identity to this repo's `docker.yml` workflow
-**run from a `v*` tag** — rejecting unsigned images, images signed by other
-workflows, and images signed from unprotected refs. It is identical for both
-registries because both sets of tags were signed at the same digest in one
-workflow run.
-
-**Release candidates** — signed from `refs/heads/main` (the caller's ref when
-`release-candidate.yml` invokes `docker.yml` as a reusable workflow):
-
-```bash
-cosign verify ghcr.io/abhigyanpatwari/gitnexus:1.7.0-rc.1 \
-  --certificate-identity 'https://github.com/abhigyanpatwari/GitNexus/.github/workflows/docker.yml@refs/heads/main' \
-  --certificate-oidc-issuer https://token.actions.githubusercontent.com
-```
-
-You can also inspect the build provenance and SBOM:
-
-```bash
-cosign download attestation ghcr.io/abhigyanpatwari/gitnexus:1.6.2 \
-  --predicate-type https://slsa.dev/provenance/v1
-```
-
-#### Kubernetes: enforce signatures at admission
-
-For Kubernetes deployments, ship the bundled
-[`ClusterImagePolicy`](deploy/kubernetes/cluster-image-policy.yaml) so the
-[Sigstore policy-controller][policy-controller] rejects any GitNexus pod whose
-image is not signed by this repo's `docker.yml` running from a `vX.Y.Z` tag —
-the same identity the `cosign verify` snippet above pins.
-
-```bash
-# 1. Install the controller (one-time, cluster-wide)
-helm repo add sigstore https://sigstore.github.io/helm-charts && helm repo update
-helm install policy-controller -n cosign-system --create-namespace \
-  sigstore/policy-controller
-
-# 2. Opt your namespace in
-kubectl label namespace <your-ns> policy.sigstore.dev/include=true
-
-# 3. Apply the policy
-kubectl apply -f deploy/kubernetes/cluster-image-policy.yaml
-```
-
-After this, attempting to deploy an unsigned image — or one signed by anything
-other than `abhigyanpatwari/GitNexus`'s `docker.yml` at a `v*` tag — fails the
-admission webhook before a pod is ever created. This turns the verifiable
-signature into an enforced policy, which is the supply-chain control most
-clusters actually need.
-
-[cosign-keyless]: https://docs.sigstore.dev/cosign/signing/overview/
-[policy-controller]: https://docs.sigstore.dev/policy-controller/overview/
-
-### Files
-
-- [Dockerfile.web](Dockerfile.web) — builds `gitnexus-shared` and `gitnexus-web`, then serves the production frontend.
-- [Dockerfile.cli](Dockerfile.cli) — builds the CLI/server (with its native deps) and runs `gitnexus serve --host 0.0.0.0`.
-- [docker-compose.yaml](docker-compose.yaml) — starts both signed images side by side.
-- [.env.example](.env.example) — overrides for image names, container names, ports, and the workspace mount.
-
-The web UI uses the same indexing pipeline as the CLI but runs entirely in WebAssembly (Tree-sitter WASM, LadybugDB WASM, in-browser embeddings). It's great for quick exploration but limited by browser memory for larger repos.
-
-**Local Backend Mode:** Run `gitnexus serve` and open the web UI locally — it auto-detects the server and shows all your indexed repos, with full AI chat support. No need to re-upload or re-index. The agent's tools (Cypher queries, search, code navigation) route through the backend HTTP API automatically.
-
----
-
 ## The Problem GitNexus Solves
 
 Tools like **Cursor**, **Claude Code**, **Codex**, **Cline**, **Roo Code**, and **Windsurf** are powerful — but they don't truly know your codebase structure.
@@ -583,6 +407,7 @@ GitNexus builds a complete knowledge graph of your codebase through a multi-phas
 | C | — | — | ✓ | — | ✓ | ✓ | — | ✓ | ✓ |
 | C++ | — | — | ✓ | ✓ | ✓ | ✓ | — | ✓ | ✓ |
 | Dart | ✓ | — | ✓ | ✓ | ✓ | ✓ | — | ✓ | ✓ |
+| Delphi/Pascal | ✓ | — | ✓ | ✓ | — | — | — | — | — |
 
 **Imports** — cross-file import resolution · **Named Bindings** — `import { X as Y }` / re-export tracking · **Exports** — public/exported symbol detection · **Heritage** — class inheritance, interfaces, mixins · **Type Annotations** — explicit type extraction for receiver resolution · **Constructor Inference** — infer receiver type from constructor calls (`self`/`this` resolution included for all languages) · **Config** — language toolchain config parsing (tsconfig, go.mod, etc.) · **Frameworks** — AST-based framework pattern detection · **Entry Points** — entry point scoring heuristics
 

@@ -28,7 +28,7 @@
   ],
   "type": "module",
   "bin": {
-    "gitnexus": "dist/cli/index.js"
+    "gitnexus-delphi": "dist/cli/index.js"
   },
   "files": [
     "dist",

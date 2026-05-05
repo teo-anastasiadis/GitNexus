@@ -1,6 +1,6 @@
 # Adding Delphi Pascal Support to GitNexus
 
-**Status:** Step 9 complete — ready for Step 10 (validation)  
+**Status:** Step 10 complete — all steps done ✓  
 **Scope:** Full language support at parity with existing tree-sitter languages (Dart, Swift)
 
 ---
@@ -493,17 +493,23 @@ import { dfmProvider } from './dfm.js';
 
 ---
 
-### Step 10 — Validate (30 min)
+### Step 10 — Validate ✓ (complete)
 
-```bash
-cd gitnexus
-npx tsc --noEmit    # must pass cleanly
-npm test            # full suite
-```
+Integration tests written and passing (`test/integration/resolvers/pascal.test.ts`):
 
-Optionally add a minimal integration test: a `.pas` file with one class, one method, one uses
-clause, one `.dfm` with an `OnClick` binding, and one `.dpk` listing the unit. Assert that the
-analyzer produces the expected symbols, call edges, and entry-point scores.
+- Symbol detection: Class, Function, Method nodes for `.pas` fixtures
+- IMPORTS edges from `uses` clauses (fixed `@import.source` capture)
+- CALLS edges: same-file (`Persist → Validate`) and cross-file (`Run → Persist`)
+- Call source attribution: CALLS from `Run` (Function), not File (fixed `defProc` in `FUNCTION_NODE_TYPES` + `extractFunctionName` in pascal method extractor)
+- EXTENDS edges: `TDog → TAnimal` (fixed `@heritage.extends` capture name)
+
+Root causes found and fixed during validation:
+1. **`@import.source` missing**: `(declUses (moduleName) @import.source) @import` pattern needed for import-processor
+2. **Duplicate symbol table entries**: forward declarations + implementations both captured → added nodeId dedup in `symbol-table.ts`
+3. **`findEnclosingFunction` blind to `defProc`**: added `defProc` to `FUNCTION_NODE_TYPES` + `extractFunctionName` hook
+4. **`@heritage.parent` vs `@heritage.extends`**: generic extractor uses `heritage.extends`, not `heritage.parent`
+
+Full suite: 7200 pass, 152 pre-existing Kotlin failures, 18 skipped.
 
 ---
 
