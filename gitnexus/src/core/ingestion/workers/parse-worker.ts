@@ -44,6 +44,12 @@ let Kotlin: TreeSitterLanguage | null = null;
 try {
   Kotlin = _require('tree-sitter-kotlin');
 } catch {}
+
+// tree-sitter-pascal is an optionalDependency — may not be installed
+let Pascal: TreeSitterLanguage | null = null;
+try {
+  Pascal = _require('tree-sitter-pascal');
+} catch {}
 import { getLanguageFromFilename } from 'gitnexus-shared';
 import {
   FUNCTION_NODE_TYPES,
@@ -322,6 +328,7 @@ const languageMap: Record<string, TreeSitterLanguage> = {
   [SupportedLanguages.Vue]: TypeScript.typescript,
   ...(Dart ? { [SupportedLanguages.Dart]: Dart } : {}),
   ...(Swift ? { [SupportedLanguages.Swift]: Swift } : {}),
+  ...(Pascal ? { [SupportedLanguages.DelphiPascal]: Pascal } : {}),
 };
 
 /**
